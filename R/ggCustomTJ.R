@@ -14,15 +14,15 @@
   
   ggplot2::theme_set(ggplot2::theme_bw()) # override default theme
   
+  scale_colour_continuous <- viridis::scale_colour_viridis
+  scale_fill_continuous <- viridis::scale_fill_viridis
+  scale_colour_discrete <- function(...) ggplot2::scale_colour_brewer(..., palette="Set1", na.value='gray50')
+  scale_fill_discrete <- function(...) ggplot2::scale_fill_brewer(..., palette="Set1", na.value='gray50')
+  # to use the default ggplot2 discrete colour scale, use: + ggplot2::scale_colour_discrete()
+  #  or ggplot2::scale_colour_hue()
+
   invisible()
 }
-
-scale_colour_continuous <- viridis::scale_colour_viridis
-scale_fill_continuous <- viridis::scale_fill_viridis
-scale_colour_discrete <- function(...) ggplot2::scale_colour_brewer(..., palette="Set1", na.value='gray50')
-scale_fill_discrete <- function(...) ggplot2::scale_fill_brewer(..., palette="Set1", na.value='gray50')
-# to use the default ggplot2 discrete colour scale, use: + ggplot2::scale_colour_discrete()
-#  or ggplot2::scale_colour_hue()
 
 brewer_cols <- c(RColorBrewer::brewer.pal(4, 'Set1'), 'gray42')
 brewer_all_cols <- RColorBrewer::brewer.pal(9, 'Set1')
