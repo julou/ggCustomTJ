@@ -14,8 +14,6 @@
   
   ggplot2::theme_set(ggplot2::theme_bw()) # override default theme
   
-  scale_colour_continuous <- viridis::scale_colour_viridis
-  scale_fill_continuous <- viridis::scale_fill_viridis
   scale_colour_discrete <- function(...) ggplot2::scale_colour_brewer(..., palette="Set1", na.value='gray50')
   scale_fill_discrete <- function(...) ggplot2::scale_fill_brewer(..., palette="Set1", na.value='gray50')
   # to use the default ggplot2 discrete colour scale, use: + ggplot2::scale_colour_discrete()
@@ -56,3 +54,15 @@ scale_y_hours <- function(.dh=6, ...) {
   }
 }
 sec_to_h_trans <- function() scales::trans_new("sec_to_h", function(.x) .x/3600, function(.x) .x*3600)
+
+# utility functions to slice and sample dataframes by groups
+slice_groups <- function(.data, ...) {
+  .groups <- groups(.data)
+  .data %>% nest() %>% slice(...) %>% unnest() %>% group_by(!!!.groups)
+}
+
+sample_n_groups <- function(.data, ...) {
+  .groups <- groups(.data)
+  .data %>% nest() %>% sample_n(...) %>% unnest() %>% group_by(!!!.groups)
+}
+
