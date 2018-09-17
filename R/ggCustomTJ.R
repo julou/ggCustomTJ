@@ -13,16 +13,18 @@
   if(any(toset)) options(op.ggCustomTJ[toset])
   
   ggplot2::theme_set(ggplot2::theme_bw()) # override default theme
+
+  scale_colour_discrete <- function(...) ggplot2::scale_colour_manual(..., values=qual_cols, na.value='gray50')
+  scale_fill_discrete <- function(...) ggplot2::scale_fill_manual(..., values=qual_cols, na.value='gray50')
+  # to use the default ggplot2 discrete colour scale, use: + ggplot2::scale_colour_discrete()
+  #  or ggplot2::scale_colour_hue()
   
   invisible()
 }
 
 # qualitative color palette from "Color Universal Design" by Okabe and Ito, http://jfly.iam.u-tokyo.ac.jp/color/
 qual_cols <- c("#0072B2", "#D55E00", "#009E73", "#F0E442", "#56B4E9", "#E69F00", "#CC79A7")
-scale_colour_discrete <- function(...) ggplot2::scale_colour_manual(..., values=qual_cols, na.value='gray50')
-scale_fill_discrete <- function(...) ggplot2::scale_fill_manual(..., values=qual_cols, na.value='gray50')
-# to use the default ggplot2 discrete colour scale, use: + ggplot2::scale_colour_discrete()
-#  or ggplot2::scale_colour_hue()
+
 scale_colour_periodic <- function(..., .n=4) 
   ggplot2::scale_colour_manual(..., values = rep(qual_cols[1:.n], 1e4), na.value='gray50')
 scale_fill_periodic <- function(..., .n=4) 
