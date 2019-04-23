@@ -17,9 +17,9 @@ col_saturation_adjust <- function(cols, amount, method='relative') {
   return(cols);
 }
 hex_saturate <- function(cols, amount, method='relative')
-  cols %>% hex2RGB %>% col_saturation_adjust(amount, method) %>% hex
+  cols %>% (colorspace::hex2RGB) %>% col_saturation_adjust(amount, method) %>% (colorspace::hex)
 hex_desaturate <- function(cols, amount, method='relative')
-  cols %>% hex2RGB %>% col_saturation_adjust(-amount, method) %>% hex
+  cols %>% (colorspace::hex2RGB) %>% col_saturation_adjust(-amount, method) %>% (colorspace::hex)
 
 col_lightness_adjust <- function(cols, amount, method='relative') {
   # amount: -1 to 1 (negative darkens, positive lightens)
@@ -38,9 +38,9 @@ col_lightness_adjust <- function(cols, amount, method='relative') {
   return(cols);
 }
 hex_lighten <- function(cols, amount, method='relative')
-  cols %>% hex2RGB %>% col_lightness_adjust(amount, method) %>% hex
+  cols %>% (colorspace::hex2RGB) %>% col_lightness_adjust(amount, method) %>% (colorspace::hex)
 hex_darken <- function(cols, amount, method='relative')
-  cols %>% hex2RGB %>% col_lightness_adjust(-amount, method) %>% hex
+  cols %>% (colorspace::hex2RGB) %>% col_lightness_adjust(-amount, method) %>% (colorspace::hex)
 
 # hex_fade <- function(cols, amount)
 # hex_fadein <- function(cols, amount, method='relative')
