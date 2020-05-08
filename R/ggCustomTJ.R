@@ -67,13 +67,13 @@ sec_to_h_trans <- function() scales::trans_new("sec_to_h", function(.x) .x/3600,
 # utility functions to slice and sample dataframes by groups
 slice_groups <- function(.data, ...) {
   .groups <- groups(.data)
-  stopifnot(length(.groups) > 0, 'the dataframe must have groups')
+  stopifnot(length(.groups) > 0)
   .data %>% nest() %>% slice(...) %>% unnest("data") %>% group_by(!!!.groups)
 }
 
 sample_n_groups <- function(.data, ...) {
   .groups <- groups(.data)
-  stopifnot(length(.groups) > 0, 'the dataframe must have groups')
+  stopifnot(length(.groups) > 0)
   .data %>% nest() %>% sample_n(...) %>% unnest("data") %>% group_by(!!!.groups)
 }
 
