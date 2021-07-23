@@ -17,8 +17,10 @@
   invisible()
 }
 
+git_current_commit_sha <- function() system("git rev-parse HEAD", intern=TRUE)
+
 # qualitative color palette from "Color Universal Design" by Okabe and Ito, http://jfly.iam.u-tokyo.ac.jp/color/
-qual_cols <- c("#0072B2", "#D55E00", "#009E73", "#F0E442", "#56B4E9", "#E69F00", "#CC79A7")
+qual_cols <- c("#0072B2", "#D55E00", "#009E73", "#F0E442", "#56B4E9", "#E69F00", "#CC79A7", "#333333")
 
 scale_colour_discrete <- function(...) ggplot2::scale_colour_manual(..., values=qual_cols, na.value='gray50')
 scale_fill_discrete <- function(...) ggplot2::scale_fill_manual(..., values=qual_cols, na.value='gray50')
@@ -26,9 +28,9 @@ scale_fill_discrete <- function(...) ggplot2::scale_fill_manual(..., values=qual
 #  or ggplot2::scale_colour_hue()
 
 scale_colour_periodic <- function(..., .n=4) 
-  ggplot2::scale_colour_manual(..., values = rep(qual_cols[1:.n], 1e4), na.value='gray50')
+  ggplot2::scale_colour_manual(..., values = rep(qual_cols[1:.n], 1e4), na.value='gray50', guide=ggplot2::guide_none())
 scale_fill_periodic <- function(..., .n=4) 
-  ggplot2::scale_fill_manual(..., values = rep(qual_cols[1:.n], 1e4), na.value='gray50')
+  ggplot2::scale_fill_manual(..., values = rep(qual_cols[1:.n], 1e4), na.value='gray50', guide=ggplot2::guide_none())
 
 
 brewer_cols <- c(RColorBrewer::brewer.pal(4, 'Set1'), 'gray42')
